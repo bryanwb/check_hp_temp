@@ -32,25 +32,31 @@ def compareSensor(line):
        current = line[2]
        threshold = line[3]
        if(current == 0):
-               print('Sensor %s %s reports no temperature value' % (sensorName,sensorNum)) 
+               line = 'Sensor {} {} reports no temperature value'\
+			.format(sensorName,sensorNum) 
                countUnknown += 1
        elif(current >= threshold):      
-               print("Too Hot! Sensor %s %s current temperature is %dC which" \
-                     " exceeds threshold %dC" % (sensorName, sensorNum, current, threshold))
+               line = "Hot! Sensor {} {} current temperature is {}C which" \
+                     " exceeds threshold {}C"\
+			.format(sensorName, sensorNum, current, threshold)
                countError += 1
        else:
-               print("OK: Sensor %s %s current temperature is %dC which" \
-                        " is below threshold %dC" \
-                         % (sensorName, sensorNum,current, threshold))
+               line = "OK: Sensor {} {} current temperature is {}C which" \
+                        " is below threshold {}C"\
+                         .format(sensorName, sensorNum,current, threshold)
                countOK += 1
+       return line
 
-def nagiosExitCode():
+def nagiosExitCode(messages):
         if(countError > 0):
                print("%d sensors exceed thresholds. Too Hot!" % countError)
-               sys.exit(2)
+               exitCode = 2
         else:
                 print("%d sensors beneath thresholds. Nice and Cool!" % countOK)
-                sys.exit(0)
+                exitCode = 0
+	for line in messages:
+		print(line)
+	sys.exit(exitCode)
 
 usage = "usage: %prog [Options]"
 parser = OptionParser(usage)
@@ -70,9 +76,8 @@ for line in infile.readlines() :
     sensors.append(line.split())
 sensors = cleanArray(sensors)
 sensors = map(parseDegrees, sensors)
-for sensor in sensors:
-        compareSensor(sensor)
+messages = map(compareSensor, sensors)
 
-nagiosExitCode()
+nagiosExitCode(messages)
 
 
