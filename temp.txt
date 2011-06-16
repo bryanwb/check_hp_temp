@@ -1,0 +1,12 @@
+
+Sensor   Location              Temp       Threshold
+------   --------              ----       ---------
+#0        SYSTEM_BD             -          -       
+#1        SYSTEM_BD            40C/104F   57C/134F 
+#3        SYSTEM_BD            57C/104F   57C/134F 
+#4        CPU#1                37C/98F    80C/176F 
+#5        CPU#2                47C/116F   80C/176F 
+#6        CPU#3                90C/116F   80C/176F 
+
+
+
