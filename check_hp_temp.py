@@ -27,20 +27,21 @@ def parseDegrees(line):
 
 def compareSensor(line):
        global countUnknown,countOK,countError
+       sensorNum = line[0]	
        sensorName = line[1]
        current = line[2]
        threshold = line[3]
        if(current == 0):
-               print('Sensor %s reports no temperature value' % sensorName) 
+               print('Sensor %s %s reports no temperature value' % (sensorName,sensorNum)) 
                countUnknown += 1
        elif(current >= threshold):      
-               print("Too Hot! Sensor %s current temperature is %dC which" \
-                     " exceeds threshold %dC" % (sensorName, current, threshold))
+               print("Too Hot! Sensor %s %s current temperature is %dC which" \
+                     " exceeds threshold %dC" % (sensorName, sensorNum, current, threshold))
                countError += 1
        else:
-               print("OK: Sensor %s current temperature is %dC which" \
+               print("OK: Sensor %s %s current temperature is %dC which" \
                         " is below threshold %dC" \
-                         % (sensorName, current, threshold))
+                         % (sensorName, sensorNum,current, threshold))
                countOK += 1
 
 def nagiosExitCode():
