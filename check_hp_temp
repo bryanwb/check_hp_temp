@@ -32,18 +32,19 @@ def compareSensor(line):
        current = line[2]
        threshold = line[3]
        if(current == 0):
-               line = 'Sensor {} {} reports no temperature value'\
-			.format(sensorName,sensorNum) 
+               line = 'Sensor ' + str(sensorName) + " " + \
+	 	   str(sensorNum) + ' reports no temperature value'
                countUnknown += 1
        elif(current >= threshold):      
-               line = "Hot! Sensor {} {} current temperature is {}C which" \
-                     " exceeds threshold {}C"\
-			.format(sensorName, sensorNum, current, threshold)
+               line = "Hot! Sensor " + str(sensorName) + " " + \
+		  str(sensorNum) + ' current temperature is ' + \
+		  str(current) + 'C which exceeds threshold ' + \
+		  str(threshold) + 'C' 
                countError += 1
        else:
-               line = "OK: Sensor {} {} current temperature is {}C which" \
-                        " is below threshold {}C"\
-                         .format(sensorName, sensorNum,current, threshold)
+               line = 'OK: Sensor ' + str(sensorName) + ' ' + str(sensorNum) + \
+		 ' current temperature is ' + str(current) + 'C which' + \
+                 ' is below threshold ' + str(threshold) + 'C'
                countOK += 1
        return line
 
