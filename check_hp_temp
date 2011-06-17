@@ -69,7 +69,7 @@ if (options.infile):
         infile = options.infile
         infile = open(options.infile)
 else:
-        stdin,stdout,stderr = os.popen3('hpasmcli -s "show temp;"')
+        stdin,stdout,stderr = os.popen3('/sbin/hpasmcli -s "show temp;"')
         infile = stdout
 
 
