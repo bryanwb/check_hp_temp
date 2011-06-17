@@ -1,0 +1,15 @@
+This utility uses the hpasmcli command line utility
+to check the temperature on HP hardware. It can be used
+as a nagios plugin or directly from the command line
+
+It duplicates some of the functionality of Gerhard Lausser's awesome
+check_hpasm plugin. http://labs.consol.de/lang/de/nagios/check_hpasm/o
+
+The output of check_hpasm is quite verbose and I am too lazy to learn perl 
+in order to modify it.
+
+This script only checks temperature sensors
+
+It requires Python version 2.2+ and has been tested on the following:
+RHEL 3,4,5 
+
