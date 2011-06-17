@@ -69,11 +69,11 @@ if (options.infile):
         infile = options.infile
         infile = open(options.infile)
 else:
-	if(os.path.exists('/sbin/hpasmcli')):
+	if(os.path.exists('/sbin/hpasmcliz')):
 	        stdin,stdout,stderr = os.popen3('/sbin/hpasmcli -s "show temp;"')
         	infile = stdout
 	else:
-		raise Exception("Can't find hpasmcli. Exiting")
+		raise Exception("Can't find hpasmcli binary. Exiting")
 	
 
 
